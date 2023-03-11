@@ -1,11 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 import Greeter from "./components/Greeter";
 import ShoppingList from "./components/ShoppingList";
+import Item from "./models/item";
+import ShoppingListForm from "./components/ShoppingListForm";
+import { v4 as getId } from "uuid";
 
-function App() {
-  const items = [
+/* items dummy data
+const items = [
     {
       id: 1,
       product: '레몬',
@@ -16,11 +18,18 @@ function App() {
       product: '닭 가슴살',
       quantity: 2,
     }
-  ];
+  ];*/
+function App() {
+  const [items, setItems] = useState<Item[]>([]);
+  const AddItem = (product: string) => {
+    console.log("AddItem 호출 됨");
+    setItems([...items, { id: getId(), product, quantity: 1 }]);
+  };
   return (
     <div className="App">
       <Greeter person="min woo" />
-      <ShoppingList items={items}/>
+      <ShoppingList items={items} />
+      <ShoppingListForm onAddItem={AddItem} />
     </div>
   );
 }
