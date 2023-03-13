@@ -21,9 +21,9 @@ const items = [
   ];*/
 function App() {
   const [items, setItems] = useState<Item[]>([]);
-  const AddItem = (product: string) => {
+  const AddItem = (product: string, quantity: number) => {
     console.log("AddItem 호출 됨");
-    setItems([...items, { id: getId(), product, quantity: 1 }]);
+    setItems([...items, { id: getId(), product, quantity}]);
   };
   return (
     <div className="App">
